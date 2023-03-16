@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Available Polls</h2><hr><br>
+{% for obj in obj %}
+<h3>{{ forloop.counter }} - {{obj.question}}</h3>
+<i>{{obj.date}}</i> &nbsp; &nbsp; <a href="{% url 'option' obj.pk %}">View poll</a> &nbsp; &nbsp; <a href="{% url 'result' obj.pk %}">view results</a>
+{% if obj.owner == request.user %} &nbsp; &nbsp; <a href="{% url 'editquestion' obj.pk %}">Edit question</a> &nbsp; &nbsp; <a href="{% url 'end' obj.pk %}">end poll</a>{%endif%}
+<br><br><hr><br>
+{%empty%}
+<p>No available polls at the moment</p>
+{%endfor%}
+{% if obj.has_previous %}
+    <a href="?page={{ obj.previous_page_number }}">&laquo; Previous Page</a> &nbsp; &nbsp; 
+{% endif %}
+{% if obj.has_next %}
+    <a href="?page={{ obj.next_page_number }}"> Next Page &raquo;</a> &nbsp; &nbsp;
+{% endif %}
+{% endblock %}

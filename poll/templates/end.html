@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{%if obj%}
+<h2>End Poll</h2>
+<a href="{% url 'question' %}">Back</a>
+<form method="post">
+{%csrf_token%}
+<p>Are you sure you want to end this poll - '{{obj.question}}' added on '{{obj.date}}'</p>
+<input type="submit" value="end">
+</form>
+{%endif%}
+{%if data%}
+<h2>remove option</h2>
+<a href="{% url 'option' data.question.pk %}">Back</a>
+<form method="post">
+{%csrf_token%}
+<p>Are you sure you want to remove the option - '{{data.option}}' in '{{data.question}}'</p>
+<input type="submit" value="remove">
+</form>
+{%endif%}
+{% endblock %}

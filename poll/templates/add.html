@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Poll</h2>
+<form method="post">
+{%csrf_token%}
+{{form.as_p}}
+{{form1.as_p}}
+{{form2.as_p}}
+<p>You can add more options later</p>
+<input type="submit" value="add">
+</form>
+{% endblock %}

@@ -1,0 +1,20 @@
+<head>
+    <style>
+        a:link {color:green}
+        a:hover {color:green}
+        a:visited {color:green}
+        a:active {color:green}
+    </style>
+</head>
+
+<h1>WesterGren Polls</h1>
+{% if user.is_authenticated %}
+<a href="#">Hi {{user.username}}</a> &nbsp; &nbsp; <a href="{% url 'logout' %}">Log Out</a>
+{%else%}
+<a href="{% url 'login' %}">login</a> &nbsp; &nbsp; <a href="{% url 'register' %}">register</a>
+{%endif%}<br><br>
+<a href="{% url 'index' %}">Home</a> &nbsp; &nbsp; <a href="{% url 'question' %}">View Available Polls</a>{% if user.is_authenticated %} &nbsp; &nbsp; <a href="{% url 'add' %}">Add Poll</a>{%endif%}
+<br>{% include 'messages.html' %}
+<hr><br>
+
+{% block content %} {% endblock %}

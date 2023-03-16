@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>{{data.question}}</h2>
+<h3>Poll Results</h3> <a href="{% url 'option' data.pk %}">View Poll</a>
+<br><br>
+<table border="1px" cellspacing="0px" height="200px" width="500px">
+{% for obj in obj %}
+<tr>
+<td>{{obj.option}}</td>
+<td><a href="{% url 'voter' data.pk obj.id %}">result</a></td>
+</tr>
+{% endfor %}
+</table>
+{% endblock %}
